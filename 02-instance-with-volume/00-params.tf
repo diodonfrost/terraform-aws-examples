@@ -20,10 +20,3 @@ variable "network_http" {
     cidr         = "192.168.1.0/24"
   }
 }
-
-variable "network_db" {
-  default = {
-    subnet_name  = "subnet_db"
-    cidr         = "192.168.2.0/24"
-  }
-}

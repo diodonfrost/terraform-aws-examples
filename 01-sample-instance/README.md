@@ -1,5 +1,6 @@
 # How to
 
+![infra sample-server](../img/01-sample-instance.png "infra sample-server")
 
 ### Create stack
 

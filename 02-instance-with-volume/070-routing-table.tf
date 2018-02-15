@@ -14,9 +14,3 @@ resource "aws_route_table_association" "http" {
   subnet_id      = "${aws_subnet.http.id}"
   route_table_id = "${aws_route_table.public.id}"
 }
-
-# Associate db route
-resource "aws_route_table_association" "db" {
-  subnet_id      = "${aws_subnet.db.id}"
-  route_table_id = "${aws_route_table.public.id}"
-}
