@@ -19,6 +19,16 @@ resource "aws_subnet" "http" {
   depends_on = ["aws_internet_gateway.gw"]
 }
 
+# db subnet configuration
+resource "aws_subnet" "db" {
+  vpc_id     = "${aws_vpc.terraform.id}"
+  cidr_block = "${var.network_db["cidr"]}"
+  tags       = {
+    Name     = "subnet-db"
+  }
+  depends_on = ["aws_internet_gateway.gw"]
+}
+
 # External gateway configuration
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.terraform.id}"

@@ -1,5 +1,8 @@
 # How to
 
+![instance with autoscaling](../img/05-autoscaling.png "instance with autoscaling")
+
+Provide a stack with autoscaling group, only redeploy instance when the service is down or user manualy scale-up/down instances
 
 ### Create stack
 

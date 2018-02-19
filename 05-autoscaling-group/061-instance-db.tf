@@ -2,7 +2,7 @@
 
 # Create load balancer
 resource "aws_elb" "db" {
-  name     = "db-elb"
+  name     = "db-lb"
   subnets  = ["${aws_subnet.db.id}"]
   internal = "true"
 
@@ -19,6 +19,9 @@ resource "aws_elb" "db" {
     timeout             = 3
     target              = "TCP:3306"
     interval            = 30
+  }
+  tags {
+    Name = "db-lb"
   }
 }
 
@@ -40,11 +43,11 @@ resource "aws_autoscaling_group" "db" {
 
 # Configure instance launching configuration
 resource "aws_launch_configuration" "db" {
-  name_prefix                 = "db"
-  image_id                    = "${var.ami}"
-  instance_type               = "t2.micro"
-  key_name                    = "${aws_key_pair.user_key.key_name}"
-  security_groups             = ["${aws_security_group.administration.id}",
-                                 "${aws_security_group.web.id}"]
-  user_data                   = "${file("scripts/first-boot-db.sh")}"
+  name_prefix     = "db"
+  image_id        = "${var.ami}"
+  instance_type   = "t2.micro"
+  key_name        = "${aws_key_pair.user_key.key_name}"
+  security_groups = ["${aws_security_group.administration.id}",
+                     "${aws_security_group.web.id}"]
+  user_data       = "${file("scripts/first-boot-db.sh")}"
 }

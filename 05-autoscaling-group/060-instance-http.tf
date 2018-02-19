@@ -2,7 +2,7 @@
 
 # Create load balancer
 resource "aws_elb" "http" {
-  name    = "http-elb"
+  name    = "http-lb"
   subnets = ["${aws_subnet.http.id}"]
 
   listener {
@@ -18,6 +18,9 @@ resource "aws_elb" "http" {
     timeout             = 3
     target              = "HTTP:80/"
     interval            = 30
+  }
+  tags {
+    Name = "http-lb"
   }
 }
 
@@ -39,11 +42,11 @@ resource "aws_autoscaling_group" "http" {
 
 # Configure instance launching configuration
 resource "aws_launch_configuration" "http" {
-  name_prefix                 = "http"
-  image_id                    = "${var.ami}"
-  instance_type               = "t2.micro"
-  key_name                    = "${aws_key_pair.user_key.key_name}"
-  security_groups             = ["${aws_security_group.administration.id}",
-                                 "${aws_security_group.web.id}"]
-  user_data                   = "${file("scripts/first-boot-http.sh")}"
+  name_prefix     = "http"
+  image_id        = "${var.ami}"
+  instance_type   = "t2.micro"
+  key_name        = "${aws_key_pair.user_key.key_name}"
+  security_groups = ["${aws_security_group.administration.id}",
+                     "${aws_security_group.web.id}"]
+  user_data       = "${file("scripts/first-boot-http.sh")}"
 }

@@ -24,6 +24,6 @@ resource "aws_eip" "public_http" {
   instance   = "${aws_instance.http.id}"
   depends_on = ["aws_internet_gateway.gw"]
   tags       = {
-    Name     = "public_http"
+    Name     = "public-http"
   }
 }

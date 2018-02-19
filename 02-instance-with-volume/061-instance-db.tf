@@ -20,7 +20,7 @@ resource "aws_eip" "public_db" {
   instance   = "${aws_instance.db.id}"
   depends_on = ["aws_internet_gateway.gw"]
   tags       = {
-    Name     = "public_db"
+    Name     = "public-db"
   }
 }
 
@@ -36,4 +36,7 @@ resource "aws_volume_attachment" "db" {
   force_detach = true
   volume_id    = "${aws_ebs_volume.db.id}"
   instance_id  = "${aws_instance.db.id}"
+  tags         = {
+    Name       = "db-volume"
+  }
 }
