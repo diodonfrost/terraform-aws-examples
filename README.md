@@ -2,8 +2,13 @@
 
 Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
 
-Version used:
-*   Terraform 0.11.2
+
+## Terraform versions
+
+For Terraform 0.12 use version v2.* of this module.
+
+If you are using Terraform 0.11 you can use versions v1.*.
+
 
 ## AWS authentification
 The AWS provider is used to interact with the many resources supported by AWS. The provider needs to be configured with the proper credentials before it can be used.
