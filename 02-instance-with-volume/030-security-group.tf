@@ -4,9 +4,9 @@
 resource "aws_security_group" "administration" {
   name        = "administration"
   description = "Allow default administration service"
-  vpc_id      = "${aws_vpc.terraform.id}"
-  tags        = {
-    Name      = "administration"
+  vpc_id      = aws_vpc.terraform.id
+  tags = {
+    Name = "administration"
   }
 
   # Open ssh port
@@ -38,9 +38,9 @@ resource "aws_security_group" "administration" {
 resource "aws_security_group" "web" {
   name        = "web"
   description = "Allow web incgress trafic"
-  vpc_id      = "${aws_vpc.terraform.id}"
-  tags        = {
-    Name      = "web"
+  vpc_id      = aws_vpc.terraform.id
+  tags = {
+    Name = "web"
   }
 
   # http port
@@ -72,9 +72,9 @@ resource "aws_security_group" "web" {
 resource "aws_security_group" "db" {
   name        = "db"
   description = "Allow db incgress trafic"
-  vpc_id      = "${aws_vpc.terraform.id}"
-  tags        = {
-    Name      = "db"
+  vpc_id      = aws_vpc.terraform.id
+  tags = {
+    Name = "db"
   }
 
   # db port
@@ -93,3 +93,4 @@ resource "aws_security_group" "db" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
