@@ -16,7 +16,8 @@ variable "vpc_cidr" {
 #### NETWORK PARAMS
 variable "network_http" {
   default = {
-    subnet_name  = "subnet_http"
-    cidr         = "192.168.1.0/24"
+    subnet_name = "subnet_http"
+    cidr        = "192.168.1.0/24"
   }
 }
+
