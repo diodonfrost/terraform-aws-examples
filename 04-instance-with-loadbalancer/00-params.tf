@@ -16,8 +16,8 @@ variable "vpc_cidr" {
 #### HTTP PARAMS
 variable "network_http" {
   default = {
-    subnet_name  = "subnet_http"
-    cidr         = "192.168.1.0/24"
+    subnet_name = "subnet_http"
+    cidr        = "192.168.1.0/24"
   }
 }
 
@@ -29,8 +29,8 @@ variable "desired_capacity_http" {
 #### DB PARAMS
 variable "network_db" {
   default = {
-    subnet_name  = "subnet_db"
-    cidr         = "192.168.2.0/24"
+    subnet_name = "subnet_db"
+    cidr        = "192.168.2.0/24"
   }
 }
 
@@ -38,3 +38,4 @@ variable "network_db" {
 variable "desired_capacity_db" {
   default = 3
 }
+
