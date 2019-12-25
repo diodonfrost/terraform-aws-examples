@@ -43,7 +43,7 @@ resource "aws_autoscaling_group" "http" {
 # Configure instance launching configuration
 resource "aws_launch_configuration" "http" {
   name_prefix   = "http"
-  image_id      = var.ami
+  image_id      = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name      = aws_key_pair.user_key.key_name
   security_groups = [
