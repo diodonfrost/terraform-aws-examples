@@ -2,8 +2,8 @@
 
 # Create instance
 resource "aws_instance" "db" {
-  count         = var.desired_capacity_db
-  ami           = var.ami
+  for_each      = var.db_instance_names
+  ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name      = aws_key_pair.user_key.key_name
   vpc_security_group_ids = [
@@ -13,7 +13,7 @@ resource "aws_instance" "db" {
   subnet_id = aws_subnet.db.id
   user_data = file("scripts/first-boot-db.sh")
   tags = {
-    Name = "db-instance${count.index}"
+    Name = each.key
   }
 }
 

@@ -1,10 +1,15 @@
 # Display dns information
 
 output "http_ip" {
-  value = aws_instance.http.*.private_ip
+  value = {
+    for instance in aws_instance.http:
+    instance.id => instance.private_ip
+  }
 }
 
 output "db_ip" {
-  value = aws_instance.db.*.private_ip
+  value = {
+    for instance in aws_instance.db:
+    instance.id => instance.private_ip
+  }
 }
-
