@@ -36,9 +36,9 @@ resource "aws_lb_target_group" "http" {
 
 # Add instance to load balancer
 resource "aws_lb_target_group_attachment" "http" {
-  count            = var.desired_capacity_http
+  for_each         = var.http_instance_names
   target_group_arn = aws_lb_target_group.http.arn
-  target_id        = element(aws_instance.http.*.id, count.index)
+  target_id        = aws_instance.http[each.key].id
   port             = 80
 }
 
@@ -79,9 +79,8 @@ resource "aws_lb_target_group" "db" {
 
 # Add instance to load balancer
 resource "aws_lb_target_group_attachment" "db" {
-  count            = var.desired_capacity_db
+  for_each         = var.db_instance_names
   target_group_arn = aws_lb_target_group.db.arn
-  target_id        = element(aws_instance.db.*.id, count.index)
+  target_id        = aws_instance.db[each.key].id
   port             = 80
 }
-

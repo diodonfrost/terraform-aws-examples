@@ -1,11 +1,17 @@
 # Display dns information
 
 output "http_ip" {
-  value = aws_eip.public_http.*.public_ip
+  value = {
+    for instance in aws_instance.http:
+    instance.id => instance.private_ip
+  }
 }
 
-output "db_hostname" {
-  value = aws_instance.db.*.private_dns
+output "db_ip" {
+  value = {
+    for instance in aws_instance.db:
+    instance.id => instance.private_ip
+  }
 }
 
 output "lb_hostname_http" {
@@ -15,4 +21,3 @@ output "lb_hostname_http" {
 output "lb_hostname_db" {
   value = aws_lb.db.dns_name
 }
-
