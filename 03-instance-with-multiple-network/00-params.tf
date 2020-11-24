@@ -8,7 +8,7 @@ variable "vpc_cidr" {
 
 #### HTTP PARAMS
 variable "network_http" {
-  type    = map(string)
+  type = map(string)
   default = {
     subnet_name = "subnet_http"
     cidr        = "192.168.1.0/24"
@@ -23,7 +23,7 @@ variable "http_instance_names" {
 
 #### DB PARAMS
 variable "network_db" {
-  type    = map(string)
+  type = map(string)
   default = {
     subnet_name = "subnet_db"
     cidr        = "192.168.2.0/24"
