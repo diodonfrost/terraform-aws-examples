@@ -5,7 +5,8 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 
 ## Terraform versions
 
-For Terraform 0.12 use version v2.* of this module.
+Version used:
+*   Terraform 0.13
 
 If you are using Terraform 0.11 you can use versions v1.*.
 
