@@ -6,7 +6,7 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 ## Terraform versions
 
 Version used:
-*   Terraform 0.13
+*   Terraform 0.14.*
 
 If you are using Terraform 0.11 you can use versions v1.*.
 
