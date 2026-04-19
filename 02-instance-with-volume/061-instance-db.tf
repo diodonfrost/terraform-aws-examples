@@ -18,7 +18,7 @@ resource "aws_instance" "db" {
 
 # Attach floating ip on instance db
 resource "aws_eip" "public_db" {
-  vpc        = true
+  domain     = "vpc"
   instance   = aws_instance.db.id
   depends_on = [aws_internet_gateway.gw]
   tags = {

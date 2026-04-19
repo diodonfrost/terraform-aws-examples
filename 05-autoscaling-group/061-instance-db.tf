@@ -35,22 +35,25 @@ resource "aws_autoscaling_group" "db" {
   default_cooldown          = "30"
   health_check_grace_period = "120"
   force_delete              = true
-  launch_configuration      = aws_launch_configuration.db.name
   load_balancers            = [aws_elb.db.name]
-  termination_policies      = ["OldestLaunchConfiguration"]
+  termination_policies      = ["OldestLaunchTemplate"]
   vpc_zone_identifier       = [aws_subnet.db.id]
+
+  launch_template {
+    id      = aws_launch_template.db.id
+    version = "$Latest"
+  }
 }
 
-# Configure instance launching configuration
-resource "aws_launch_configuration" "db" {
-  name_prefix   = "db"
+# Configure instance launch template
+resource "aws_launch_template" "db" {
+  name_prefix   = "db-"
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name      = aws_key_pair.user_key.key_name
-  security_groups = [
+  vpc_security_group_ids = [
     aws_security_group.administration.id,
     aws_security_group.web.id,
   ]
-  user_data = file("scripts/first-boot-db.sh")
+  user_data = filebase64("scripts/first-boot-db.sh")
 }
-
